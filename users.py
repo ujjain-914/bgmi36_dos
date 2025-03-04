@@ -1,7 +1,7 @@
 import asyncio
 from datetime import datetime, timedelta
 from telegram import Update
-from telegram.ext import Application, CommandHandler, CallbackContext
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
 from motor.motor_asyncio import AsyncIOMotorClient
 
 bot_start_time = datetime.now()
@@ -323,7 +323,7 @@ async def remove_user(update: Update, context: CallbackContext):
         await context.bot.send_message(chat_id=chat_id, text=f"*⚠️ User {target_user_id} ye chutiya is bot m nhi h malik.*", parse_mode='Markdown')
 
 def main():
-    application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+    application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("ninja", ninja))
     application.add_handler(CommandHandler("attack", attack))
